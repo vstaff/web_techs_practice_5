@@ -1,0 +1,87 @@
+extends template1
+
+block nav
+    nav
+        +createMenu(dictMenu, "Список лучших компьютерных игр")
+block content
+    body
+        details
+            summary График
+            form
+                table(cellspacing="5")
+                    tr(align="center")
+                        th
+                            label(for="X") Значение по оси X
+                        br
+                        th
+                            label(for="res") Результат
+                    tr
+                        td
+                            input(type="radio" name="X" value="publisher" placeholder="Студия") 
+                            span Студия 
+                            br
+                            input(type="radio" name="X" value="genre" placeholder="Жанр")
+                            span Жанр 
+                            br
+                            input(type="radio" name="X" value="year" placeholder="Год")
+                            sapn Год
+                        td
+                            input(type="checkbox" name="res" value="maxmar;" placeholder="Максимальная оценка")
+                            span Максимальная оценка
+                            br
+                            input(type="checkbox" name="res" value="minmark" placeholder="Минимальная оценка")
+                            sapn Минимальная оценка
+                            br
+                            input(type="checkbox" name="res" value="count" placeholder="Количество игр") 
+                            span Количество игр
+                input(type="submit" value="Построить")
+            hr(align="left" width="20%")
+            p Здесь будет график
+
+        details
+            summary Фильтр
+            br
+            form
+                label Название: 
+                    input(type="text" name="name")
+                br
+                br
+                label Платформа: 
+                    input(type="text" name="platform")
+                br
+                br
+                label Студия: 
+                    input(type="text" name="publisher")
+                br
+                br
+                label Жанр: 
+                    input(type="text" name="Genre")
+                br
+                br
+                label Год от: 
+                    input(type="number" name="minyear" min="2000" max="2025")
+                label  до: 
+                    input(type="number" name="maxyear" min="2000" max="2025")
+                br
+                br
+                label Балл от: 
+                    input(type="number" name="minmark" min="0" max="100")
+                label  до: 
+                    input(type="number" name="maxmark" min="0" max="100")
+                br
+                br
+                input(type="submit" value="Найти")
+                br
+
+        details
+            summary Сортировка
+            br
+            form
+                +make_level("Первый уровень", sortOptions, "1")
+                br
+                +make_level("Второй уровень", sortOptions, "2")
+                br
+                +make_level("Третий уровень", sortOptions, "3")
+                br
+
+        +gameTable(string, games1)
