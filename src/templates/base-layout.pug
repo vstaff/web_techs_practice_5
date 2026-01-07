@@ -11,7 +11,7 @@ html(lang="ru")
                 //- h1.page-logo__website-title SoundCloud
 
             nav.page-navigation 
-                each value, key in {'Главная': './index.html', 'Чарт': './chart.html', 'Артист': './artist.html'}
+                each value, key in {'Главная': './index.html', 'Чарт': './chart.html', 'Артист месяца': './artist.html'}
                     div.page-navigation__navigation-item 
                         if key == title
                             a(href=value).page-navigation__link.active=key

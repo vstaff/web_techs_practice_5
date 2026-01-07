@@ -1,0 +1,38 @@
+img.month-artist-img {
+  display: block;
+  max-width: 66%;
+}
+div.discography__album {
+  margin-bottom: 3rem;
+  display: grid;
+  grid-template-areas: "cover info" "cover songs";
+  grid-template-columns: 200px auto;
+  column-gap: 1rem;
+}
+div.discography__album img.discography__cover {
+  grid-area: cover;
+  align-self: center;
+  display: inline-block;
+  width: 100%;
+}
+div.discography__album div.discography__album-info {
+  grid-area: info;
+}
+div.discography__album div.discography__album-info h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+div.discography__album div.discography__album-info h5 {
+  margin-top: 0;
+  color: #808080;
+  margin-bottom: 1rem;
+}
+div.discography__album ul.discography__songs-list {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  grid-area: songs;
+}
+div.discography__album ul.discography__songs-list li::marker {
+  content: '';
+}

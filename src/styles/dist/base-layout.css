@@ -37,8 +37,9 @@ a.page-navigation__link.active {
 }
 main,
 footer {
-  padding: 0.5rem;
+  padding: 1.5rem;
 }
 footer.page-footer>p.page-footer__paragraph {
+  width: 100%;
   text-align: center;
 }

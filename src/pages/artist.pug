@@ -1,7 +1,65 @@
 extends ../templates/base-layout
 
+mixin makeDiscography(discography)
+    div.discography
+        each item in discography
+            div.discography__album
+                img.discography__cover(src=item.src, alt=item.title)
+
+                div.discography__album-info
+                    h4 #{item.title} 
+                    h5 #{item.year}
+
+                ul.discography__songs-list
+                    each song in item.songs 
+                        li #{song}
+
 block variables 
-    - var title = 'Артист'
+    - var title = 'Артист месяца'
 
 block content
     h2 #{title}
+
+    img.month-artist-img(src='artists/madk1d.jpg')
+
+    p Серков Марк Робертович (родился 11 апреля 2002 года в Томске) — российский музыкальный исполнитель. Карьеру музыканта начал в 2020 году, первую аудиторию обрёл после фита с LILCAK3 на треке «КАТЮХА».
+
+    -
+        var discography = [
+            {
+                src: 'albums_covers/madk1d/он_сказал_поехали!.png',
+                title: 'Он сказал поехали!',
+                year: 2024,
+                songs: [
+                    'типичная ситуация',
+                    '1 мая (feat. CUPSIZE)',
+                    'самый лучший трудовик',
+                    'грустная ситуация',
+                    'незаконно (feat. голодный)',
+                    'number 9',
+                    'заправка',
+                    'типичная ситуация (acoustic)',
+                    'мориарти'
+                ]
+            },
+            {
+                src: 'albums_covers/madk1d/sexyswag.png',
+                title: 'sexyswag',
+                year: 2024,
+                songs: [
+                    'так пофиг',
+                    'цена (feat. паранойя)',
+                    'ты че обиделась (feat. тёмный принц)',
+                    'супермаркет',
+                    'насосы',
+                    'sexyswag2010',
+                    'сдвг',
+                    'последним летом (feat. GRILLYAZH)',
+                    'танцор'
+                ]
+            }
+        ]
+
+
+    h3 Дискография
+    +makeDiscography(discography)
