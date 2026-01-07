@@ -1,5 +1,20 @@
 extends ../templates/base-layout 
 
+mixin makeArtistsImages(imagesSources)
+    each item in imagesSources
+        if !item.title
+            img.artists-images__image(src=`artists/${item.src}` alt="soundcloud-logo")
+        else 
+            a.artists-images__image(href='artist.html')
+                span.artists-images__month-artist-label #{item.title}
+                img(src=`artists/${item.src}` alt="soundcloud-logo" style='display: block; width: 100%')
+
+mixin makeColumn(imagesSources)
+    each item in imagesSources
+        div.albums-images__album
+            img.albums-images__image(src=`albums_covers/${item.src}`)
+            h3 #{item.title}
+
 block variables 
     - var title = 'Главная'
 
@@ -9,29 +24,17 @@ block content
     - var artistsImages = [{ src: 'урал_гайсин.jpg' }, { src: 'fortuna_812_2.png' }, { src: 'madk1d.jpg', title: 'Madk1d' }];
 
     div.artist-images
-        each item in artistsImages
-            if !item.title
-                img.artists-images__image(src=`artists/${item.src}` alt="soundcloud-logo")
-            else 
-                a.artists-images__image(href='artist.html')
-                    span.artists-images__month-artist-label #{item.title}
-                    img(src=`artists/${item.src}` alt="soundcloud-logo" style='display: block; width: 100%')
+        +makeArtistsImages(artistsImages)
 
     - var albumsSmallImages1 = [{ src: 'kai_angel/damage.png', title: 'Kai Angel - Damage'}, { src: 'madk1d/sexyswag.png', title: 'Madk1d - sexyswag2010'}]
     - var albumsSmallImages2 = [{ src: 'FORTUNA_812/basedgod.png', title: 'FORTUNA 812 - basedgod' }, { src: 'тёмный_принц/мрачные_треды.png', title: 'тёмный принц - мрачные треды' }]
 
     div.albums-images
         div.albums-images__column#column-1
-            each item in albumsSmallImages1
-                div.albums-images__album
-                    img.albums-images__image(src=`albums_covers/${item.src}`)
-                    h3 #{item.title}
+            +makeColumn(albumsSmallImages1)
 
         div.albums-images__column#column-2
-            each item in albumsSmallImages2 
-                div.albums-images__album
-                    img.albums-images__image(src=`albums_covers/${item.src}`)
-                    h3 #{item.title}
+            +makeColumn(albumsSmallImages2)
 
     div.triplet
         div.triplet__side#side-1
