@@ -1,2 +1,3 @@
-//import './styles/main.styl'
-import './styles/main1.styl'
+import "./styles/global.styl";
+import "./styles/base-layout.styl";
+import "./styles/index.styl"

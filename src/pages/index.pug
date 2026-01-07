@@ -1,19 +1,60 @@
-extends template
+extends ../templates/base-layout 
 
-block nav
-    nav
-        +createMenu(dictMenu, 'Главная')
-        
-block content
-    div.images
-        each pict in listImages
-            a(href= "building.html")
-                img(src= require("../images/" + pict))
+block variables 
+    - var title = 'Главная'
 
-    article
-        each item in listSections
-            section
-                h3= item.header
-                img(src= require("../images/"  + item.image))
-                p= item.text
-                    a(href="#") &hellip;
+block content 
+    h2 #{title}
+
+    - var artistsImages = [{ src: 'урал_гайсин.jpg' }, { src: 'fortuna_812_2.png' }, { src: 'madk1d.jpg', title: 'Madk1d' }];
+
+    div.artist-images
+        each item in artistsImages
+            if !item.title
+                img.artists-images__image(src=`artists/${item.src}` alt="soundcloud-logo")
+            else 
+                a.artists-images__image(href='artist.html')
+                    span.artists-images__month-artist-label #{item.title}
+                    img(src=`artists/${item.src}` alt="soundcloud-logo" style='display: block; width: 100%')
+
+    - var albumsSmallImages1 = [{ src: 'kai_angel/damage.png', title: 'Kai Angel - Damage'}, { src: 'madk1d/sexyswag.png', title: 'Madk1d - sexyswag2010'}]
+    - var albumsSmallImages2 = [{ src: 'FORTUNA_812/basedgod.png', title: 'FORTUNA 812 - basedgod' }, { src: 'тёмный_принц/мрачные_треды.png', title: 'тёмный принц - мрачные треды' }]
+
+    div.albums-images
+        div.albums-images__column#column-1
+            each item in albumsSmallImages1
+                div.albums-images__album
+                    img.albums-images__image(src=`albums_covers/${item.src}`)
+                    h3 #{item.title}
+
+        div.albums-images__column#column-2
+            each item in albumsSmallImages2 
+                div.albums-images__album
+                    img.albums-images__image(src=`albums_covers/${item.src}`)
+                    h3 #{item.title}
+
+    div.triplet
+        div.triplet__side#side-1
+            img(src="albums_covers/kanye_west/graduation.png" alt="Kanye West - Graduation")
+            h3 Kanye West - Graduation
+
+        div.triplet__center
+            img(src="artists/kanye_west.jpg" alt="Kanye West")
+
+            h3 Kanye West 
+
+            p Ye - более известный под бывшим юридическим именем Канье Уэст, — американский рэпер, музыкальный продюсер, автор песен, звукорежиссёр, бывший долларовый миллиардер и дизайнер.
+
+            p Вырос в Чикаго, где с юных лет был связан с музыкой. В конце 1990-х — начале 2000-х годов он получил известность как продюсер, приняв участие в создании хитов для таких исполнителей, как Jay-Z, Ludacris, Талиб Квели и Алиша Киз. Бросив обучение в университете, чтобы сосредоточиться на музыке, он решил стать рэпером, выпустив дебютный альбом, The College Dropout, в 2004 году. За ним последовали альбомы Late Registration (2005), Graduation (2007), 808s & Heartbreak (2008), My Beautiful Dark Twisted Fantasy (2010), совместный с Jay-Z альбом Watch the Throne (2011), Yeezus (2013), The Life of Pablo (2016), Ye (2018), совместный с Kid Cudi альбом Kids See Ghosts (2018), Jesus is King (2019), Donda (2021) и его сиквел, выпущенный в 2022 году, совместные с Ty Dolla $ign альбомы Vultures 1 (2024), и Vultures 2 (2024).
+
+            p Канье Уэст известен своими прямыми высказываниями на различных церемониях и в социальных медиа, что не раз приводило к скандалам. В качестве дизайнера он работал с такими компаниями, как Nike и Louis Vuitton, а в 2013 году запустил совместно с Adidas линию одежды Yeezy. Он также основал лейбл GOOD Music и креативное агентство DONDA. 
+
+            p В 2014 году женился на звезде реалити-шоу и модели Ким Кардашьян. Канье Уэст получил признание критиков и был неоднократно назван одним из величайших артистов XXI века. Он вошёл в число самых продаваемых артистов, суммарный объём продаж его альбомов и синглов в цифровом формате и на физических носителях превысил 121 миллион экземпляров. Уэст выиграл 24 премии «Грэмми», благодаря чему он является одним из рекордсменов по числу выигранных номинаций и рекордсменом среди хип-хоп-музыкантов, а также артистов своего возраста. Его альбомы были включены в различные списки лучших альбомов, в том числе в список 500 величайших альбомов всех времён по версии журнала Rolling Stone.
+
+            p Он несколько раз был представлен в различных списках журнала Forbes и дважды — в ежегодном списке 100 самых влиятельных людей мира по версии журнала Time. В 2019 году вошёл в список самых высокооплачиваемых музыкантов по версии журнала Forbes. Заработанная сумма составила $150 млн, это второе место в рейтинге. В 2020 году Forbes поставил Канье Уэста с доходом $170 млн на второе место в рейтинге самых высокооплачиваемых знаменитостей. По сообщению Bloomberg, состояние Канье Уэста на 2021 год оценивалось в $6,6 млрд и большая часть капитала приходилась на бренд Yeezy.
+
+        div.triplet__side#side-2
+            img(src="albums_covers/kanye_west/yeezus.png" alt="Kanye West - Yeezus")
+            h3 Kanye West - Yeezus
+
+

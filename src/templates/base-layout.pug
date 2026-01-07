@@ -1,0 +1,25 @@
+block variables
+
+doctype html
+html(lang="ru")
+    head
+        title #{title}
+    body
+        header.page-header
+            div.page-logo 
+                img.page-logo__logo(src="soundcloud-svgrepo-com.svg" alt="soundcloud-logo")
+                //- h1.page-logo__website-title SoundCloud
+
+            nav.page-navigation 
+                each value, key in {'Главная': './index.html', 'Чарт': './chart.html', 'Артист': './artist.html'}
+                    div.page-navigation__navigation-item 
+                        if key == title
+                            a(href=value).page-navigation__link.active=key
+                        else 
+                            a(href=value).page-navigation__link=key
+
+        main.page-main-content 
+            block content
+
+        footer.page-footer
+            p.page-footer__paragraph Сайт разработал: Кон Владислав

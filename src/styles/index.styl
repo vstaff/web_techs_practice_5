@@ -1,0 +1,129 @@
+div.artist-images
+    display flex
+    flex-flow row wrap
+
+    justify-content space-between
+    align-items center
+
+    width 77%
+    margin-left auto 
+    margin-right auto
+    margin-bottom 5rem
+
+    .artists-images__image
+        display inline-block 
+        width calc(33% - 0.5rem)
+        aspect-ratio 1/1
+
+    a.artists-images__image
+        color white
+        position relative
+        transition all 0.25s ease 0.01s 
+
+        &:hover
+            transform scale(1.05)
+
+        span.artists-images__month-artist-label
+                // z-index 10
+                color white
+                background-color black 
+                padding 0.25rem
+                position absolute
+                top 1rem
+                left 1rem
+
+                box-shadow 2px 2px red
+
+    @media screen and (max-width: 960px)
+        flex-direction column
+        row-gap 1rem
+
+        .artists-images__image 
+            width 60%
+            
+
+div.albums-images
+    display flex 
+    flex-flow row wrap 
+    justify-content space-between 
+    align-items center 
+    width 77%
+    margin-left auto 
+    margin-right auto
+    margin-bottom 5rem
+
+    div.albums-images__column 
+        max-width 50%
+
+        display flex 
+        flex-flow row wrap 
+        justify-content space-evenly
+
+        div.albums-images__album
+            width 30%
+            display flex 
+            flex-flow column wrap 
+            row-gap 0.5rem
+            justify-content center
+
+            img.albums-images__image
+                display block
+                max-width 80%
+
+    @media screen and (max-width 960px) 
+        // background-color red
+        flex-direction column
+
+        div.albums-images__column 
+            max-width 100%
+            margin-bottom 2rem 
+
+            flex-direction column
+
+            div.albums-images__album 
+                width 100% !important
+
+div.triplet
+    width 77% 
+    margin-left auto 
+    margin-right auto 
+
+    display grid 
+    grid-template-columns 20% 50% 20%
+    column-gap 0.5rem
+
+    div.triplet__center
+        p, h3 
+            max-width 80%
+            margin-left auto 
+            margin-right auto
+
+        img
+            display block 
+            max-width 80%
+            margin-left auto 
+            margin-right auto
+
+    div.triplet__side>img
+        display block 
+        max-width 100%
+
+    @media screen and (max-width: 960px) 
+        display grid
+        grid-template-columns 100%
+
+        div.triplet__side 
+            max-width 60%
+            margin-left auto 
+            margin-right auto
+
+        div.triplet__side#side-1
+            order 2
+
+        div.triplet__center
+            order 1
+        
+        div.triplet__side#side-2
+            order 3
+
+    
