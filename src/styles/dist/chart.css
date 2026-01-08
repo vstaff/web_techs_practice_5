@@ -1,0 +1,16 @@
+table.chart {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  max-width: 77%;
+}
+table.chart thead.chart__head {
+  position: sticky;
+  top: 66px;
+  background-color: #09090b;
+}
+table.chart th.chart__header,
+table.chart td.chart__cell {
+  border: 1px solid #fff;
+  text-align: left;
+  padding: 0.25rem;
+}

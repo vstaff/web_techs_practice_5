@@ -2,3 +2,4 @@ import "./styles/global.styl";
 import "./styles/base-layout.styl";
 import "./styles/index.styl"
 import "./styles/artist.styl"
+import "./styles/chart.styl"
