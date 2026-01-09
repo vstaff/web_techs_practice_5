@@ -15,6 +15,7 @@ div.discography__album img.discography__cover {
   align-self: center;
   display: inline-block;
   width: 100%;
+  border-radius: 1rem;
 }
 div.discography__album div.discography__album-info {
   grid-area: info;
