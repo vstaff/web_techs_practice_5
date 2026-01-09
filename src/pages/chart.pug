@@ -1,5 +1,49 @@
 extends ../templates/base-layout
 
+mixin makeGraphicSettings(oxLegend, oxInputs, oyLegend, oyInputs)
+    details.graphic-settings-wrapper
+        summary График
+        form(action='#').graphic-settings-wrapper__form
+            fieldset.graphic-settings-wrapper__ox-fieldset 
+                legend #{oxLegend}
+
+                each item in oxInputs 
+                    div.graphic-settings-wrapper__setting-row
+                        label(for=item.id)=item.placeholder 
+                        input(placeholder=item.placeholder, id=item.id, name=item.name, type=item.type, value=item.value).graphic-settings-wrapper__ox-input
+
+            fieldset.graphic-settings-wrapper__oy-fieldset 
+                legend #{oyLegend}
+
+                each item in oyInputs 
+                    div.graphic-settings-wrapper__setting-row 
+                        label(for=item.id)=item.placeholder 
+                        input(placeholder=item.placeholder, id=item.id, name=item.name, type=item.type, value=item.value).graphic-settings-wrapper__oy-input
+
+            input(type="submit" value="Построить").graphic-settings-wrapper__submit
+
+mixin makeFilters(filters)
+    details.filters-wrapper
+        summary.filters-wrapper__summary Фильтры 
+        form(action="#").filters
+            each item in filters
+                input(placeholder=item.placeholder, id=item.id, name=item.id, type=item.type).filters__input
+
+            input(type="submit" value="Найти")
+
+mixin makeSorting(sortingOptions)
+    details.sorting-wrapper 
+        summary.sorting-wrapper__summary Сортировка
+        form(action="#").sorting 
+            - for (let i = 1; i < 4; ++i)
+                p.sorting__level
+                    label(for=`level_${i}`) Уровень #{i}
+                    select(id=`level_${i}` name=`level_${i}`)
+                        each item in sortingOptions
+                            option(value=`level_${i}_${item.name}`)=item.label 
+
+            input(type="submit" value="Подтвердить").sorting__submit
+
 mixin makeTable(headers, content)
     table.chart
         thead.chart__head
@@ -15,6 +59,203 @@ mixin makeTable(headers, content)
 
 block variables 
     - var title = 'Чарт'
+    //- фильтры таблицы 
+    - var oxLegend = 'Значение по оси ОX'
+    -
+        var oxInputs = [
+            {
+                placeholder: 'Артист',
+                id: 'artist',
+                name: 'x-axis',
+                type: 'radio',
+                value: 'artist',
+            },
+            {
+                placeholder: 'Жанр',
+                id: 'genre',
+                name: 'x-axis',
+                type: 'radio',
+                value: 'genre',
+            },
+            {
+                placeholder: 'Страна',
+                id: 'country',
+                name: 'x-axis',
+                type: 'radio',
+                value: 'country',
+            },
+        ]
+    - var oyLegend = 'Значение по оси OY'
+    -
+        var oyInputs = [
+            {
+                placeholder: 'Прослушиваний на Яндекс.Музыка за месяц',
+                id: 'yandex_music',
+                name: 'y-axis',
+                type: 'checkbox',
+                value: 'yandex_music',
+            },
+            {
+                placeholder: 'Прослушиваний на Soundcloud за месяц',
+                id: 'soundcloud',
+                name: 'y-axis',
+                type: 'checkbox',
+                value: 'soundcloud',
+            },
+            {
+                placeholder: 'В среднем',
+                id: 'average',
+                name: 'y-axis',
+                type: 'checkbox',
+                value: 'average',
+            },
+        ]
+
+    -
+        var filters = [
+            {
+                id: 'artist_filter',
+                placeholder: 'от Артиста:',
+                type: 'text'
+            },
+            {
+                id: 'album_filter',
+                placeholder: 'Альбом:',
+                type: 'text',
+            },
+            {
+                id: 'genre_filter',
+                placeholder: 'Жанр(-ы):',
+                type: 'text'
+            },
+            {
+                id: 'country_filter',
+                placeholder: 'Страна:',
+                type: 'text'
+            },
+            {
+                id: "yandex_music_streams_from",
+                placeholder: 'Прослушиваний на Яндекс.Музыка от:',
+                type: 'number',
+            },
+            {
+                id: "yandex_music_streams_to",
+                placeholder: 'Прослушиваний на Яндекс.Музыка до:',
+                type: 'number',
+            },
+            {
+                id: "soundcloud_streams_from",
+                placeholder: 'Прослушиваний на Soundcloud от:',
+                type: 'number',
+            },
+            {
+                id: "soundcloud_streams_to",
+                placeholder: 'Прослушиваний на Soundcloud до:',
+                type: 'number',
+            },
+            {
+                id: "rhymes_images_from",
+                placeholder: 'Рифмы/Образы от:',
+                type: 'number',
+            },
+            {
+                id: "rhymes_images_to",
+                placeholder: 'Рифмы/Образы до:',
+                type: 'number',
+            },
+            {
+                id: "structure_rhythmic_from",
+                placeholder: 'Структура/Ритмика от:',
+                type: 'number',
+            },
+            {
+                id: "structure_rhythmic_to",
+                placeholder: 'Структура/Ритмика до:',
+                type: 'number',
+            },
+            {
+                id: "style_from",
+                placeholder: 'Реализация стиля от:',
+                type: 'number',
+            },
+            {
+                id: "style_to",
+                placeholder: 'Реализация стиля до:',
+                type: 'number',
+            },
+            {
+                id: "uniqueness_from",
+                placeholder: 'Индивидуальность от:',
+                type: 'number',
+            },
+            {
+                id: "uniqueness_to",
+                placeholder: 'Индивидуальность до:',
+                type: 'number',
+            },
+            {
+                id: "vibe_from",
+                placeholder: 'Атмосфера/Вайб от:',
+                type: 'number',
+            },
+            {
+                id: "vibe_to",
+                placeholder: 'Атмосфера/Вайб до:',
+                type: 'number',
+            },
+        ]
+
+    -
+        var sortingOptions = [
+            {
+                name: 'no',
+                label: 'Нет',
+            },
+            {
+                name: 'album',
+                label: 'Альбом',
+            },
+            {
+                name: 'artist',
+                label: 'Артист',
+            },
+            {
+                name: 'genre',
+                label: 'Жанр',
+            },
+            {
+                name: 'country',
+                label: 'Страна',
+            },
+            {
+                name: 'yandex_music_streams',
+                label: 'Прослушиваний на Яндекс.Музыка',
+            },
+            {
+                name: 'soundcloud_streams',
+                label: 'Прослушиваний на Soundcloud',
+            },
+            {
+                name: 'rhymes_images',
+                label: 'Рифмы/Образы',
+            },
+            {
+                name: 'structure_rhythmic',
+                label: 'Структура/Ритмика',
+            },
+            {
+                name: 'style',
+                label: 'Реализация стиля',
+            },
+            {
+                name: 'authenticity',
+                label: 'Индивидуальность/Харизма',
+            },
+            {
+                name: 'vibe',
+                label: 'Атмосфера/Вайб',
+            }
+        ]
 
 block content
     h2 #{title}
@@ -721,4 +962,7 @@ block content
             ]
         }
 
+    +makeGraphicSettings(oxLegend, oxInputs, oyLegend, oyInputs)
+    +makeFilters(filters)
+    +makeSorting(sortingOptions)
     +makeTable(tableData.headers, tableData.content)
