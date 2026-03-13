@@ -1,3 +1,5 @@
+@require mixins
+
 img.page-logo__logo 
     display block 
     max-width 100%
@@ -6,10 +8,9 @@ header.page-header
     padding 0.5rem
     display grid 
     grid-template-columns 56px calc(100% - 56px)
-    align-items center
-    position sticky 
+    align-items center 
     height 67px
-    top 0 
+    makeSticky(0)
     z-index 100
     background-color: rgb(9, 9, 11)
 
@@ -18,7 +19,9 @@ header.page-header
         padding: 0 0.25rem
         border-radius 1rem
 
-nav.page-navigation 
+
+
+.page-navigation
     display flex 
     flex-flow row wrap 
     align-items center 
@@ -26,18 +29,16 @@ nav.page-navigation
 
     gap 1rem
 
-a.page-navigation__link 
-    display inline-block
-    color white 
-    text-decoration none 
-    // transition all 0.1s ease 0s
+    &__link
+        display inline-block
+        color white 
+        text-decoration none 
 
-a.page-navigation__link:hover 
-    // transform scale(1.03)
-    box-shadow 2px 2px 0 red
+        &:hover
+            box-shadow 2px 2px 0 red
 
-a.page-navigation__link.active 
-    text-decoration underline
+        &_active 
+            text-decoration underline
 
 main, footer
     padding 1.5rem

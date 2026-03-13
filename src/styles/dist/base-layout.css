@@ -7,8 +7,8 @@ header.page-header {
   display: grid;
   grid-template-columns: 56px calc(100% - 56px);
   align-items: center;
-  position: sticky;
   height: 67px;
+  position: sticky;
   top: 0;
   z-index: 100;
   background-color: #09090b;
@@ -33,7 +33,7 @@ a.page-navigation__link {
 a.page-navigation__link:hover {
   box-shadow: 2px 2px 0 #f00;
 }
-a.page-navigation__link.active {
+a.page-navigation__link_active {
   text-decoration: underline;
 }
 main,

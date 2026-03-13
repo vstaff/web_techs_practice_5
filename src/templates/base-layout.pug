@@ -14,7 +14,7 @@ html(lang="ru")
                 each value, key in {'Главная': './index.html', 'Чарт': './chart.html', 'Артист месяца': './artist.html'}
                     div.page-navigation__navigation-item 
                         if key == title
-                            a(href=value).page-navigation__link.active=key
+                            a(href=value).page-navigation__link.page-navigation__link_active=key
                         else 
                             a(href=value).page-navigation__link=key
 

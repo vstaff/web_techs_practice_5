@@ -1,3 +1,5 @@
+@require mixins
+
 details 
     margin-bottom 1.5rem
 
@@ -21,8 +23,7 @@ table.chart
     max-width 77%
 
     thead.chart__head 
-        position sticky 
-        top 66px
+        makeSticky(66px)
         background-color rgb(9, 9, 11)
 
     th.chart__header, td.chart__cell
